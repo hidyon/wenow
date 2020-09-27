@@ -6,9 +6,9 @@
 <template>
   <v-app>
     <!-- 左側のナビゲーション -->
-    <v-navigation-drawer app v-model="drawer" clipped>
+    <v-navigation-drawer v-model="drawer" app clipped>
       <v-container>
-        <v-list>
+        <v-list dense>
           <v-list-item-title align="left" @click="toWorkToday('all')" >
             <v-icon>mdi-github</v-icon>
               Today all
@@ -27,12 +27,39 @@
 
     <!-- 上側 -->
     <v-app-bar color="primary" dark app clipped-left>
-      <v-app-bar-nav-icon @click="drawer=!drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>We Now</v-toolbar-title>
+      <v-app-bar-nav-icon @click="drawer=!drawer">
+      </v-app-bar-nav-icon>
+      <v-toolbar-title>
+        We Now
+      </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-toolbar-items>
-        <v-btn text>FAQ</v-btn>
-      </v-toolbar-items>
+      <v-menu>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            color="primary"
+            depressed
+            dark
+            v-bind="attrs"
+            v-on="on"
+          >
+            <v-icon>mdi-github</v-icon>
+            {{ selectedGroup == '' ? "チームを選択": selectedGroup}}
+          </v-btn>
+        </template>
+        <v-list >
+          <v-list-item
+            v-for="(group, index) in groups"
+            :key="index"
+            dense
+            @click="toWorkToday(group.groupName)"
+          >
+            <v-list-item-title align="left">
+              <v-icon>mdi-github</v-icon>
+              {{ group.groupName }}
+            </v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>   
     </v-app-bar>
      
     <!-- 中央 -->
@@ -58,30 +85,31 @@ export default {
 
       // 左側のナビゲーションの表示コントロール
       drawer : null,
-
       // グループ定義データ
       groups : [],
+      // 表示選択された所属グループ
+      selectedGroup : ''
 
     }
   },
 
   created: function (){
-    this.getDefGroup()
+    this.getDefGroups()
   },
 
   methods: {
       // グループ定義情報を取得
-      async getDefGroup(){
-        const g = await backendApi.getDefGroup()
-        this.groups = g
+      async getDefGroups(){
+        this.groups = await backendApi.getDefGroups()
       },
       // 指定のグループに属する勤務者情報を表示する
       toWorkToday(groupName){
+        this.selectedGroup = groupName
         const path = '/works/today/' + groupName
         if(path != this.$route.path){
           this.$router.push({path : path})
         }
-      }
+      },
   }
 }
 </script>

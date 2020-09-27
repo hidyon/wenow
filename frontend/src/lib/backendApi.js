@@ -29,10 +29,30 @@ export default {
 /**
   * backend-server からグループ定義データを取得する
   */
-  async getDefGroup () {
+  async getDefGroups () {
     const response = await axios({
       method: 'get',
       url: baseURL + '/api/defGroups'
+    })
+    return response.data
+  },
+/**
+  * backend-server から勤務タイプ定義データを取得する
+  */
+  async getDefWorkTypes () {
+    const response = await axios({
+      method: 'get',
+      url: baseURL + '/api/defWorkTypes'
+    })
+    return response.data
+  },
+/**
+  * backend-server から会社定義データを取得する
+  */
+  async getDefCompanies () {
+    const response = await axios({
+      method: 'get',
+      url: baseURL + '/api/defCompanies'
     })
     return response.data
   },
