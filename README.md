@@ -1,7 +1,9 @@
 # What's this ?
 
  職場で働く人の勤務情報を共有できるアプリケーション
- ![screenshot](https://user-images.githubusercontent.com/46841011/94360740-bf7e3a00-00ea-11eb-978a-7258d2c742e7.png)
+
+ <img width="545" alt="screenshot" src="https://user-images.githubusercontent.com/46841011/94361963-fbb59880-00f2-11eb-90cb-b76459cc660a.png">
+
 # 特徴
 
  職場で働く人の勤務情報を共有できる
