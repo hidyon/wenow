@@ -262,7 +262,7 @@ export default {
       const data = await backendApi.getWork(group)
       this.list = data
       // 今日 YYYY-MM-DD
-      const todayString = moment().tz("Asia/Tokyo").format('YYYY-MM-DD (ddd)').substr(0,16)
+      const todayString = moment().tz("Asia/Tokyo").format('YYYY-MM-DD')
       this.setDay(todayString)
     },
     // 各種の定義データリストを取得する
@@ -333,7 +333,7 @@ export default {
       // list.works, list.workを更新する
       const j = item.works.findIndex ( d => d.date == workEditModal.pickeredDate )
       if(j != -1 ){
-        item.works[j] == newWork
+        item.works[j] = newWork
       } else {
         item.works.push(newWork)
       }
