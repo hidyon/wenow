@@ -1,6 +1,7 @@
 import axios from 'axios'
 import CONF from '../config.json'
-const baseURL = "http://" + CONF.BACKEND_DOMAIN + ":" + CONF.BACKEND_PORT 
+//const baseURL = "http://" + CONF.BACKEND_DOMAIN + ":" + CONF.BACKEND_PORT 
+const baseURL = "http://" + window.location.hostname + ":" + CONF.BACKEND_PORT 
 
 export default {
 /**
@@ -56,4 +57,15 @@ export default {
     })
     return response.data
   },
+/**
+ * 
+ */
+  async putWorkById (data){
+    const response = await axios({
+      method: 'put',
+      url: baseURL + '/api/users/' + data._id,
+      data: data
+    })
+    return response.data
+  }
 }

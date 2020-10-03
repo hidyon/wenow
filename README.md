@@ -2,7 +2,8 @@
 
  職場で働く人の勤務情報を共有できるアプリケーション
 
- <img width="545" alt="screenshot" src="https://user-images.githubusercontent.com/46841011/94361963-fbb59880-00f2-11eb-90cb-b76459cc660a.png">
+<img width="652" alt="screenshot_01" src="https://user-images.githubusercontent.com/46841011/94986345-0c558b00-0599-11eb-911b-91083082979b.png">
+<img width="650" alt="screenshot_02" src="https://user-images.githubusercontent.com/46841011/94986356-1d9e9780-0599-11eb-8aaa-65d72b671a9e.png">
 
 # 特徴
 
@@ -21,11 +22,11 @@
    - 参加しているプロジェクト
    - 特別なコミュニティ
  - 搭載情報は公開可能なものに限定し開示範囲制限はしない
- - TODO 勤務情報、勤務者情報の編集 バックエンド側
- - TODO 勤務情報更新の同期
- - TODO 勤務情報更新のブロードキャスト通知
+ - TODO 勤務情報の同期push通知
  - TODO データダウンロード
  - TODO UI きれいに
+ - TODO グループ選択済みでブックマークできる
+ - TODO 50人の同時アクセス＆編集でパフォーマンスが落ちないか
  - TODO FAQ
  - TODO (最終)office365/Teamsと連携できる
 
@@ -37,14 +38,8 @@
  $ docker-compose build 
  $ docker-compose up -d
  
- 起動後に http://localhost/ にアクセス
+ 起動後に http://localhost(or server-ip)/ にアクセス
 ```
-
-localhost以外から利用する場合は以下のファイルを修正しdockerimageをbuild
-- frontend/app/src/config.json // frontend,backend のドメインをlocalhostから変更
-
-question-frontコンテナの以下のファイルを修正してもOK
-- /usr/share/nginx/html/js/app*.js // frontend,backendのドメインをlocalhostから変更
 
 - アプリ(コンテナ）の廃棄
 ```

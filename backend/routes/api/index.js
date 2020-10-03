@@ -21,6 +21,8 @@ router.get('/defGroups', defGroupsController.doGet)
 router.get('/defWorkTypes', defWorkTypesController.doGet)
 // 会社定義の提供
 router.get('/defCompanies', defCompaniesController.doGet)
+// 指定の勤務者情報の更新
+router.put('/users/:id', usersController.doPutById)
 
 module.exports = router
 

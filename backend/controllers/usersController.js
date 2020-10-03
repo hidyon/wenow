@@ -57,7 +57,7 @@ module.exports =  {
    */
   doPost : (req, res, next) => {
 
-    let postData = new PersonModel(req.body)
+    let postData = new UserModel(req.body)
     postData.save((err, result) => {
       if(!err){
         res.send(result)
@@ -69,16 +69,19 @@ module.exports =  {
   },
 
   /**
-   * 指定ユーザー情報の更新
+   * 指定ユーザーの情報更新
    */
   doPutById : (req, res, next) => {
-
+    console.log("doPutById")
+    console.log("_id: "+ req.params.id)
+    console.log(JSON.stringify(req.body))
     let putReqData = req.body
-    PersonModel.findOneAndUpdate( 
+    UserModel.findOneAndUpdate( 
       { _id : req.params.id }, 
       {$set: putReqData}, 
       (err, result) =>{
         if(!err){
+    console.log("success: " + result )
           res.send(result)
         } else {
           console.log(err)
